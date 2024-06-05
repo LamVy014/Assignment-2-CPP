@@ -20,6 +20,7 @@ namespace Diagnosis {
 class Patient : public Person {
 public:
 
+
     Patient(const std::string& firstName, const std::string& lastName, std::tm birthday);
 
     // return a calculated age for the patient

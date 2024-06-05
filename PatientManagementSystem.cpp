@@ -91,7 +91,7 @@ void PatientManagementSystem::addVitalsRecord()
         int bodyTemperature;
         int brainActivity;
 
-        cout << "Enter hear rate: ";
+        cout << "Enter heart rate: ";
         cin >> heartRate;
         cout << "Enter oxygen saturation: ";
         cin >> oxygenSaturation;

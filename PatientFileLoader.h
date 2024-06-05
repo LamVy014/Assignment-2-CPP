@@ -11,10 +11,11 @@ class Patient;
 class PatientFileLoader
 {
 public:
+    PatientFileLoader() = default;
     PatientFileLoader(const std::string& file);
 
     // loads a list of patients from a file and returns a vector of those patients
-    std::vector<Patient*> loadPatientFile();
+    std::vector<Patient*> loadPatientFile(const std::string& file);
 
 private:
     std::string _file;
