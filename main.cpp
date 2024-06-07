@@ -6,6 +6,8 @@
 #include <string>
 
 #include "PatientManagementSystem.h"
+#include "PatientDatabaseLoader.h"
+using namespace std;
 
 int main()
 {
