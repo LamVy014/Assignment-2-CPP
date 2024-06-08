@@ -9,7 +9,7 @@ public:
     GPNotificationSystemFacade();
     virtual ~GPNotificationSystemFacade();
 
-    void sendGPNotificationForPatient(Patient* p);
+    void sendPatientNotif(Patient* p);
 };
 
 #endif

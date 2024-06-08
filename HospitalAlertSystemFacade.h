@@ -10,7 +10,7 @@ public:
     HospitalAlertSystemFacade();
     virtual ~HospitalAlertSystemFacade();
 
-    void sendAlertForPatient(Patient* p);
+    void sendPatientNotif(Patient* p);
 
 };
 

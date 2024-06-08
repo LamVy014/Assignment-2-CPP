@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "PatientAlertLevels.h"
+#include "NotifObserver.h"
 
 class Vitals;
 
@@ -49,6 +50,8 @@ public:
     // patients have an alert level (green, yellow, orange, red) calculated from their disease and and their last vitals
     void setAlertLevel(AlertLevel level);
     const AlertLevel alertLevel() const { return _alertLevel; }
+    void addAlertNotify(NotificationObserver* alertLevel);
+    void setAlertNotify();
 
 protected:
     std::vector<std::string> _diagnosis;

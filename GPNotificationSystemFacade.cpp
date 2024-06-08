@@ -9,7 +9,7 @@ GPNotificationSystemFacade::GPNotificationSystemFacade()
 GPNotificationSystemFacade::~GPNotificationSystemFacade()
 { }
 
-void GPNotificationSystemFacade::sendGPNotificationForPatient(Patient* p)
+void GPNotificationSystemFacade::sendPatientNotif(Patient* p)
 {
     if (p->alertLevel() >= AlertLevel::Orange) {
         // A mocked alert message. A real message would use an SMS/pager gateway or similar
