@@ -4,9 +4,15 @@
 
 #include <vector>
 #include <memory>
+#include <list>
 
 #include "PatientAlertLevels.h"
-#include "NotifObserver.h"
+#include "NotificationObserver.h"
+#include "AlertStrategy.h"
+#include "AmogusSusAlertStrategy.h"
+#include "ERushAlertStrategy.h"
+#include "NocapSyndromeAlertStrategy.h"
+#include "TicctoccBrainDamageAlertStrategy.h"
 
 class Vitals;
 
@@ -57,6 +63,8 @@ protected:
     std::vector<std::string> _diagnosis;
     std::vector<const Vitals*> _vitals;
     AlertLevel _alertLevel;
+    std::unique_ptr<AlertStrategy> _alertTypeStrategy;
+    std::list<NotificationObserver*> _alertNotify;
 
     friend std::ostream& operator<<(std::ostream& os, const Patient& p);
 };

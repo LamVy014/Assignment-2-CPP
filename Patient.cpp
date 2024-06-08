@@ -87,7 +87,24 @@ const std::vector<std::string>& Patient::diagnoses() const
 void Patient::addVitals(const Vitals* v)
 {
     _vitals.push_back(v);
-    // TODO: calculate alert levels
+    // Get the patient's primary diagnosis
+    const std::string& diagnosis = primaryDiagnosis();
+
+    // Depending on the primary diagnosis, set the appropriate alert calculation strategy.
+    if (diagnosis == Diagnosis::AMOGUS_SUS)
+        _alertTypeStrategy = std::make_unique<AmogusSusAlertStrategy>();
+    else if (diagnosis == Diagnosis::E_RUSH)
+        _alertTypeStrategy = std::make_unique<ERushAlertStrategy>();
+    else if (diagnosis == Diagnosis::NOCAP_SYNDROME)
+        _alertTypeStrategy = std::make_unique<NocapSyndromeAlertStrategy>();
+    else if (diagnosis == Diagnosis::TICCTOCC_BRAIN_DAMAGE)
+        _alertTypeStrategy = std::make_unique<TicctoccBrainDamageAlertStrategy>();
+
+    // Get the result of alert level
+    AlertLevel newAlertLevel = _alertTypeStrategy->calculateAlertLevel(this, v);
+
+    // Calling alert level based on the result
+    setAlertLevel(newAlertLevel);
 }
 
 const std::vector<const Vitals*> Patient::vitals() const
@@ -113,5 +130,19 @@ void Patient::setAlertLevel(AlertLevel level)
             break;
         }
         cout << endl;
+    }
+}
+
+void Patient::addAlertNotify(NotificationObserver* alertLevel) {
+    _alertNotify.push_back(alertLevel);
+}
+
+// This function notifies all GP and hospital in the _alertNotify list about the patient's current alert level.
+void Patient::setAlertNotify()
+{
+    // Loop through all element in the list
+    for (auto& alert : _alertNotify) {
+        // Passing the current patient to the function
+        alert->sendPatientNotif(this);
     }
 }
