@@ -24,7 +24,7 @@ add_executable (A2
     "PatientManagementSystem.cpp" "PatientManagementSystem.h"
     "Person.cpp" "Person.h"
     "Vitals.cpp" "Vitals.h"
- "PatientFileLoaderAdaptor.cpp" "PatientFileLoaderAdaptor.h" "NotificationObserver.h" "AlertStrategy.h" "AmogusSusAlertStrategy.h" "AmogusSusAlertStrategy.cpp" "ERushAlertStrategy.h" "ERushAlertStrategy.cpp" "NocapSyndromeAlertStrategy.h" "NocapSyndromeAlertStrategy.cpp" "TicctoccBrainDamageAlertStrategy.h" "TicctoccBrainDamageAlertStrategy.cpp")
+ "PatientFileLoaderAdaptor.cpp" "PatientFileLoaderAdaptor.h" "NotificationObserver.h" "AlertStrategy.h" "AmogusSusAlertStrategy.h" "AmogusSusAlertStrategy.cpp" "ERushAlertStrategy.h" "ERushAlertStrategy.cpp" "NocapSyndromeAlertStrategy.h" "NocapSyndromeAlertStrategy.cpp" "TicctoccBrainDamageAlertStrategy.h" "TicctoccBrainDamageAlertStrategy.cpp" "CompositeCombinedAlert.h" "CompositeCombinedAlert.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET A2 PROPERTY CXX_STANDARD 20)

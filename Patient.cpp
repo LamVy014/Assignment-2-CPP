@@ -1,6 +1,7 @@
 #include "Patient.h"
 
 #include "Vitals.h"
+#include "CompositeCombinedAlert.h"
 
 #include <iostream>
 #include <iomanip>
@@ -87,18 +88,21 @@ const std::vector<std::string>& Patient::diagnoses() const
 void Patient::addVitals(const Vitals* v)
 {
     _vitals.push_back(v);
-    // Get the patient's primary diagnosis
-    const std::string& diagnosis = primaryDiagnosis();
+    
+    auto compositeStrategy = std::make_unique<CompositeCombinedAlert>();
 
-    // Depending on the primary diagnosis, set the appropriate alert calculation strategy.
-    if (diagnosis == Diagnosis::AMOGUS_SUS)
-        _alertTypeStrategy = std::make_unique<AmogusSusAlertStrategy>();
-    else if (diagnosis == Diagnosis::E_RUSH)
-        _alertTypeStrategy = std::make_unique<ERushAlertStrategy>();
-    else if (diagnosis == Diagnosis::NOCAP_SYNDROME)
-        _alertTypeStrategy = std::make_unique<NocapSyndromeAlertStrategy>();
-    else if (diagnosis == Diagnosis::TICCTOCC_BRAIN_DAMAGE)
-        _alertTypeStrategy = std::make_unique<TicctoccBrainDamageAlertStrategy>();
+    for (const auto& diagnosis : _diagnosis) {
+        if (diagnosis == Diagnosis::AMOGUS_SUS)
+            compositeStrategy->insertDisease(std::make_unique<AmogusSusAlertStrategy>());
+        else if (diagnosis == Diagnosis::E_RUSH)
+            compositeStrategy->insertDisease(std::make_unique<ERushAlertStrategy>());
+        else if (diagnosis == Diagnosis::NOCAP_SYNDROME)
+            compositeStrategy->insertDisease(std::make_unique<NocapSyndromeAlertStrategy>());
+        else if (diagnosis == Diagnosis::TICCTOCC_BRAIN_DAMAGE)
+            compositeStrategy->insertDisease(std::make_unique<TicctoccBrainDamageAlertStrategy>());
+    }
+
+    _alertTypeStrategy = move(compositeStrategy);
 
     // Get the result of alert level
     AlertLevel newAlertLevel = _alertTypeStrategy->calculateAlertLevel(this, v);
