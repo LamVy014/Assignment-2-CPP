@@ -99,7 +99,7 @@ void Patient::addVitals(const Vitals* v)
         else if (diagnosis == Diagnosis::NOCAP_SYNDROME)
             compositeStrategy->insertDisease(std::make_unique<NocapSyndromeAlertStrategy>());
         else if (diagnosis == Diagnosis::TICCTOCC_BRAIN_DAMAGE)
-            compositeStrategy->insertDisease(std::make_unique<TicctoccBrainDamageAlertStrategy>());
+            compositeStrategy->insertDisease(std::make_unique<TicctoccBrainDamageAlertStrategy>(this->age()));
     }
 
     _alertTypeStrategy = move(compositeStrategy);
