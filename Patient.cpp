@@ -111,6 +111,10 @@ void Patient::addVitals(const Vitals* v)
     setAlertLevel(newAlertLevel);
 }
 
+void Patient::addOldVitals(const Vitals* v) {
+    _vitals.push_back(v);
+}
+
 const std::vector<const Vitals*> Patient::vitals() const
 {
     return _vitals;

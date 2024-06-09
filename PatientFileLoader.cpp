@@ -9,8 +9,11 @@
 #include "Patient.h"
 #include "Vitals.h"
 
-std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file)
-{
+PatientFileLoader::PatientFileLoader(const std::string& file) {
+    _file = file;
+}
+
+std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file) {
     std::vector<Patient*> patients;
 
     std::ifstream inFile(_file);
@@ -18,7 +21,7 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
         // TODO: load your file here
         std::string line;
         while (std::getline(inFile, line)) {
-            std::stringstream strs(line);
+            std::istringstream strs(line);
             std::string id, dob, names, diseases, readings;
             std::getline(strs, id, '/');
             std::getline(strs, dob, '/');
@@ -62,7 +65,7 @@ std::vector<Patient*> PatientFileLoader::loadPatientFile(const std::string& file
                 }
 
                 Vitals* v = new Vitals(heartRate, oxygenSaturation, bodyTemperature, brainActivity);
-                p->addVitals(v);
+                p->addOldVitals(v);
             }
 
             patients.push_back(p);
