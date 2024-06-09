@@ -2,7 +2,7 @@
 #include <memory>
 #include "AlertStrategy.h"
 
-
+// Composite pattern
 class CompositeCombinedAlert : public AlertStrategy {
 public:
     void insertDisease(std::unique_ptr<AlertStrategy> strategy);

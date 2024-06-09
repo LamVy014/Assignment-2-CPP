@@ -1,4 +1,5 @@
 #include "AlertStrategy.h"
+
 class TicctoccBrainDamageAlertStrategy : public AlertStrategy
 {
 public:

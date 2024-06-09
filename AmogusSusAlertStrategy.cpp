@@ -1,4 +1,6 @@
 #include "AmogusSusAlertStrategy.h"
+#include "Vitals.h"
+#include "Patient.h"
 
 AlertLevel AmogusSusAlertStrategy::calculateAlertLevel(const Patient* patient, const Vitals* v)
 {

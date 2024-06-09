@@ -1,4 +1,6 @@
 #include "NocapSyndromeAlertStrategy.h"
+#include "Vitals.h"
+#include "Patient.h"
 
 AlertLevel NocapSyndromeAlertStrategy::calculateAlertLevel(const Patient* patient, const Vitals* v)
 {

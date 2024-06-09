@@ -1,6 +1,7 @@
 #include "PatientFileLoader.h"
 #include "AbstractPatientDatabaseLoader.h"
 
+// Adaptor pattern
 class PatientFileLoaderAdaptor : public AbstractPatientDatabaseLoader {
 private:
     PatientFileLoader loader;

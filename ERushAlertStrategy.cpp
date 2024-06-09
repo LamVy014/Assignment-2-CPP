@@ -1,4 +1,6 @@
 #include "ERushAlertStrategy.h"
+#include "Vitals.h"
+#include "Patient.h"
 
 AlertLevel ERushAlertStrategy::calculateAlertLevel(const Patient* patient, const Vitals* v)
 {
